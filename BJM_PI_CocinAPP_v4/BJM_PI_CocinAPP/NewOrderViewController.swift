@@ -1,6 +1,6 @@
 //
 //  NewOrderViewController.swift
-//  BJM_PI_v1
+//  BJM_PI_v4
 //
 //  Created by User on 28/12/22.
 //
@@ -67,7 +67,7 @@ extension NewOrderViewController: UITableViewDataSource {
         if let dish = OrderManager.shared.getDishForCurrentOrder(index: indexPath.row) {
             var config = cell.defaultContentConfiguration()
             
-            config.text = "\(dish.platillo)"
+            config.text = "\(dish.platillo.nombre)"
             config.secondaryText = "x \(dish.veces)"
             
             cell.contentConfiguration = config

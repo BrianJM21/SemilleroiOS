@@ -1,6 +1,6 @@
 //
 //  HomeViewController.swift
-//  BJM_PI_v1
+//  BJM_PI_v4
 //
 //  Created by User on 28/12/22.
 //
@@ -14,8 +14,8 @@ struct Dish {
 
 struct Order {
     
-    var idOrder: Int
-    var dishesInOrder = [(platillo: String, veces: Int)]()
+    var idOrder: Int = 0
+    var dishesInOrder = [(platillo: Dish, veces: Int)]()
 }
 
 class HomeViewController: UIViewController {
@@ -50,20 +50,20 @@ class OrderManager {
     static let shared = OrderManager()
     
     var orders: [Order] = []
-    var currentOrder = Order(idOrder: 0)
+    var currentOrder = Order()
     
     func getLastNumberOfOrder() -> Int {
         OrderManager.shared.currentOrder.idOrder = OrderManager.shared.orders.count + 1
         return OrderManager.shared.orders.count + 1
     }
     
-    func addDishToCurrentOrder(_ dishName: String) {
+    func addDishToCurrentOrder(_ dishName: Dish) {
         
         var dishExistsInOrder = false
         var index = 0
         
         for dish in OrderManager.shared.currentOrder.dishesInOrder{
-            if dishName == dish.0 {
+            if dishName.nombre == dish.platillo.nombre {
                 dishExistsInOrder = true
                 break
             }
@@ -81,7 +81,7 @@ class OrderManager {
         return OrderManager.shared.currentOrder.dishesInOrder.count
     }
     
-    func getDishForCurrentOrder(index: Int) -> (platillo: String, veces: Int)? {
+    func getDishForCurrentOrder(index: Int) -> (platillo: Dish, veces: Int)? {
         if index >= 0 && index < OrderManager.shared.currentOrder.dishesInOrder.count {
             return OrderManager.shared.currentOrder.dishesInOrder[index]
         } else {
@@ -141,7 +141,7 @@ extension HomeViewController: UITableViewDataSource {
         
         if OrderManager.shared.orders.count > 0 {
             var config = cell.defaultContentConfiguration()
-            config.text = OrderManager.shared.orders[indexPath.section].dishesInOrder[indexPath.row].platillo
+            config.text = OrderManager.shared.orders[indexPath.section].dishesInOrder[indexPath.row].platillo.nombre
             config.secondaryText = "x \(OrderManager.shared.orders[indexPath.section].dishesInOrder[indexPath.row].veces)"
             
             cell.contentConfiguration = config

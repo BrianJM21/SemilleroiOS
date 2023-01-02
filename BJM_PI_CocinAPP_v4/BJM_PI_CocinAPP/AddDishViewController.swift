@@ -1,6 +1,6 @@
 //
 //  AddDishViewController.swift
-//  BJM_PI_v1
+//  BJM_PI_v4
 //
 //  Created by User on 28/12/22.
 //
@@ -55,7 +55,7 @@ extension AddDishViewController: UITableViewDelegate {
     
         if let dish = AvailableDish.shared.getDish(index: indexPath.row) {
             
-            OrderManager.shared.addDishToCurrentOrder(dish.nombre)
+            OrderManager.shared.addDishToCurrentOrder(dish)
             self.navigationController?.popViewController(animated: true)
         }
     }
