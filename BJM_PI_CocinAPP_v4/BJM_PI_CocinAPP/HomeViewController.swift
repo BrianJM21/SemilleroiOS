@@ -7,6 +7,7 @@
 
 import UIKit
 
+//Se definen dos objetos: Platillo y Orden, que van a representar los modelo del proyecto
 struct Dish {
     
     let nombre: String
@@ -18,6 +19,7 @@ struct Order {
     var dishesInOrder = [(platillo: Dish, veces: Int)]()
 }
 
+// Desde la clase HomeViewController conectamos los subViews de la Vista e indicamos que dicha vista es el dataSource y el Delegate de la TableView que despliega las ordenes creadas
 class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -27,7 +29,7 @@ class HomeViewController: UIViewController {
         ordersTableView.delegate = self
 
     }
-    
+// Refrescamos la TableView cada vez que nos situamos en la HomeView
     override func viewWillAppear(_ animated: Bool) {
         ordersTableView.reloadData()
     }
@@ -44,9 +46,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var ordersTableView: UITableView!
     
 }
-
+// Definimos la clase que se encargará de operar el modelo de Ordenes
 class OrderManager {
-    
+    // Hacemos una instancia global de la clase para poder operar sobre el modelo Ordenes a través de la aplicación
     static let shared = OrderManager()
     
     var orders: [Order] = []
@@ -93,9 +95,9 @@ class OrderManager {
         OrderManager.shared.orders.append(newOrder)
     }
 }
-
+// Definimos la calse que se encargará de operar el modelo de Platillos
 class AvailableDish {
-    
+    // Hacemos una instancia global de la clase para poder operar sobre el modelo Platillo a través de la aplicación
     static let shared = AvailableDish()
     
     var availableDishes: [Dish] = [
@@ -121,7 +123,7 @@ class AvailableDish {
         }
     }
 }
-
+// Implementamos las funcionalidad del UITableViewDataSource en la clase HomeViewController
 extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -151,7 +153,7 @@ extension HomeViewController: UITableViewDataSource {
     }
     
 }
-
+// Implementamos las funcionalidad del UITableViewDelegate en la clase HomeViewController
 extension HomeViewController: UITableViewDelegate {
     
 }
