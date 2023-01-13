@@ -7,16 +7,61 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, UINavigationControllerDelegate {
 
     var window: UIWindow?
-
+    
+    
+    private lazy var model: BitacoraModel = {
+        let model = BitacoraModel()
+        // Cargamos las bitacoras desde que se crea.
+        model.loadBitacoras()
+        model.loadStatusOfBitacoras()
+        return model
+    }()
+    
+    private lazy var homeViewModel: BitacoraHomeViewModel = {
+        let homeViewModel = BitacoraHomeViewModel(model: self.model)
+        return homeViewModel
+    }()
+    
+    private lazy var detailsViewModel: BitacoraDetailsViewModel = {
+        let detailsViewModel = BitacoraDetailsViewModel(model: self.model)
+        return detailsViewModel
+    }()
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+        self.homeViewModel.view = nil
+        self.detailsViewModel.view = nil
+        self.detailsViewModel.unsubscribeToModel()
+        
+        if let viewController = viewController as? BitacoraHomeViewController {
+            viewController.viewModel = self.homeViewModel
+            self.homeViewModel.view = viewController
+        }
+        
+        if let viewController = viewController as? BitacoraDetailsViewController {
+            viewController.viewModel = self.detailsViewModel
+//            self.detailsViewModel.view = viewController
+            self.detailsViewModel.subscribeToModel()
+        }
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        let navigationController = UINavigationController()
+        
+        navigationController.delegate = self
+        
+        navigationController.pushViewController(BitacoraHomeViewController(), animated: false)
+        
+        self.window?.rootViewController = navigationController
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

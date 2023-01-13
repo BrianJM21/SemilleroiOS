@@ -4,23 +4,20 @@
 //
 //  Created by Dragon on 11/01/23.
 //
-//  Mantained by Alan Badillo
+//  Mantained by Alan Badillo Salas
 //
 //  Changes:
-//  * Definition of BitacoraModel class
-//  * Add code (not tested)
+//  * [11/01/23] Definition of BitacoraModel class
+//  * [11/01/23] Add code (not tested)
+//  * [12/01/23] Singleton removed for security
 //
 
 import Foundation
 import CoreData
 import Combine
 
+/// Instance of application retained data (used by view-models)
 class BitacoraModel {
-    
-    // SINGLETON
-    
-    /// Singleton of model (accessible from any `view-model`)
-    static let shared = BitacoraModel()
     
     // COREDATA CONTAINER
     
@@ -142,10 +139,10 @@ class BitacoraModel {
         
         bitacoraToAdd.title = "Untitled"
         bitacoraToAdd.details = "No details"
-        bitacoraToAdd.created = Date.now
+        bitacoraToAdd.createAt = Date.now
         bitacoraToAdd.latitude = NSDecimalNumber(decimal: lat)
         bitacoraToAdd.longitude = NSDecimalNumber(decimal: lon)
-        bitacoraToAdd.updated = nil
+        bitacoraToAdd.updateAt = nil
         
         // Save the context and update *bitácoras* and so
         
@@ -195,7 +192,7 @@ class BitacoraModel {
                 
                 // Update and save the context
                 
-                bitacoraSelected.updated = Date.now
+                bitacoraSelected.updateAt = Date.now
                 
                 do {
                     try context.save()
