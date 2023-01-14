@@ -60,7 +60,7 @@ class BitacoraDetailsViewModel {
         }
         
         // Subscribe to the current selected bitácora changes
-        self.bitacoraSelectedSubscriber = model.$bitacoraSelected.dropFirst().sink {
+        self.bitacoraSelectedSubscriber = model.$bitacoraSelected.sink {
             
             // WARNING: `self` is auto-captured by this clousure (needed)
             [weak self] bitacora in
@@ -71,13 +71,17 @@ class BitacoraDetailsViewModel {
         }
         
         // Subscribe to the list of status of the current selected bitácora changes
-        self.statusOfBitacoraSelectedSubscriber = model.$statusOfBitacoraSelected.dropFirst().sink {
+        self.statusOfBitacoraSelectedSubscriber = model.$statusOfBitacoraSelected.sink {
             
             // WARNING: `self` is auto-captured by this clousure (needed)
             [weak self] statusOfBitacoraSelected in
             
+            print("Status of selected bitacora has changed")
+            print("\(model.statusOfBitacoraSelected.count)")
+            print("\(statusOfBitacoraSelected.count)")
+            
             // TODO: Notify to view list of status of the current selected bitácora was changed
-            self?.refreshStatusOfBitacoraSelected()
+            self?.refreshStatusOfBitacoraSelected(status: statusOfBitacoraSelected)
             
         }
         
@@ -88,7 +92,7 @@ class BitacoraDetailsViewModel {
             [weak self] statusOfBitacoraSelected in
             
             // TODO: Notify to view list of status of the current selected bitácora was changed
-            self?.refreshStatusOfBitacoraSelected()
+            self?.notifyBitacoraUpdated()
             
         }
 
@@ -141,8 +145,33 @@ class BitacoraDetailsViewModel {
         
     }
     
+    /// Notify the current selected bitácora was updated to the view
+    func notifyBitacoraUpdated() {
+        
+        // Verify model exists (unwrap)
+        guard let model = self.model else {
+            // TODO: There are not model
+            return
+        }
+        
+        // Verify view exists (unwrap)
+        guard let view = self.view else {
+            // TODO: There are not view
+            return
+        }
+        
+        // The current selected bitácora in model is optional
+        if let bitacora = model.bitacoraSelected {
+            // TODO: Handle the current selected bitácora
+            view.bitacora(bitacoraUpdated: bitacora)
+        } else {
+            // TODO: There are not bitácora selected
+        }
+        
+    }
+    
     /// Send the list of status of the current selected bitácora to the view
-    func refreshStatusOfBitacoraSelected() {
+    func refreshStatusOfBitacoraSelected(status: [BitacoraStatusEntity]?) {
         
         // Verify model exists (unwrap)
         guard let model = self.model else {
@@ -157,11 +186,33 @@ class BitacoraDetailsViewModel {
         }
         
         // TODO: Handle the list of status of the current selected bitácora
-        view.bitacora(statusOfBitacoraSelected: model.statusOfBitacoraSelected)
+        view.bitacora(statusOfBitacoraSelected: status ?? model.statusOfBitacoraSelected)
         
     }
     
-    func updateBitacora() {
+    func addStatusInSelectedBitacora(label: String, status: String) {
+        
+        // Verify model exists (unwrap)
+        guard let model = self.model else {
+            // TODO: There are not model
+            return
+        }
+        
+        model.addStatusInSelectedBitacora(label: label, status: status)
+        
+    }
+    
+    /// Update the current selected bitácora to the model
+    func updateBitacora(title: String?, details: String?) {
+        
+        // Verify model exists (unwrap)
+        guard let model = self.model else {
+            // TODO: There are not model
+            return
+        }
+        
+        // Forward update to the model
+        model.updateSelectedBitacora(title: title, details: details)
         
     }
     

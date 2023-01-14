@@ -7,7 +7,8 @@
 
 import Foundation
 
-// TODO: Documentanción definicion de los protocolos
+// MARK: Protocols
+// protocolos requeridos para la vista BitacoraHome
 
 protocol BitacoraHomeView: NSObject {
     

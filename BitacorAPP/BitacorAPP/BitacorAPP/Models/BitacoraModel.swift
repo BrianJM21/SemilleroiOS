@@ -102,6 +102,8 @@ class BitacoraModel {
             
             // Filter the *status* of the *bitácora* found
             
+            self.loadStatusOfBitacoras()
+            
             self.statusOfBitacoraSelected = self.bitacoraStatus.filter {
                 status in
                 status.bitactora == bitacoraFound
@@ -123,7 +125,7 @@ class BitacoraModel {
         
         // Set-up the *id* with the max id of all *bitácoras*
         
-        if let bitacoraWithMaxId = self.bitacoras.max(by: { bitacora1, bitacora2 in bitacora1.id >= bitacora2.id
+        if let bitacoraWithMaxId = self.bitacoras.max(by: { bitacora1, bitacora2 in bitacora1.id < bitacora2.id
         }) {
             
             bitacoraToAdd.id = bitacoraWithMaxId.id + 1
@@ -233,8 +235,8 @@ class BitacoraModel {
             
             do {
                 try context.save()
-                self.loadStatusOfBitacoras()
                 self.selectBitacora(byId: Int(bitacoraSelected.id))
+                //self.loadStatusOfBitacoras()
             } catch {
                 context.rollback()
                 // TODO: Notify error (bitacora cannot create)

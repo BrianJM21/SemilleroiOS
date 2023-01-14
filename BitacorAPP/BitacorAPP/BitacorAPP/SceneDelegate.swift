@@ -14,9 +14,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UINavigationControllerD
     
     private lazy var model: BitacoraModel = {
         let model = BitacoraModel()
-        // Cargamos las bitacoras desde que se crea.
+        // Cargamos las bitacoras y los estatus de las bitacoras desde que se crea.
         model.loadBitacoras()
         model.loadStatusOfBitacoras()
+        
+        /*let context = model.container.viewContext
+        let requestBitacoras = BitacoraEntity.fetchRequest()
+        if let bitacoras = try? context.fetch(requestBitacoras) {
+            for bitacora in bitacoras {
+                context.delete(bitacora)
+            }
+            do {
+                try context.save()
+            } catch {
+                context.rollback()
+            }
+        }
+        
+        let requestStatus = BitacoraStatusEntity.fetchRequest()
+        if let status = try? context.fetch(requestStatus) {
+            for currentStatus in status {
+                context.delete(currentStatus)
+            }
+            do {
+                try context.save()
+            } catch {
+                context.rollback()
+            }
+        }*/
+        
+        
         return model
     }()
     
@@ -32,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UINavigationControllerD
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
-        self.homeViewModel.view = nil
+        //self.homeViewModel.view = nil
         self.detailsViewModel.view = nil
         self.detailsViewModel.unsubscribeToModel()
         
@@ -43,7 +70,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UINavigationControllerD
         
         if let viewController = viewController as? BitacoraDetailsViewController {
             viewController.viewModel = self.detailsViewModel
-//            self.detailsViewModel.view = viewController
+            self.detailsViewModel.view = viewController
             self.detailsViewModel.subscribeToModel()
         }
     }
@@ -53,6 +80,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UINavigationControllerD
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        
+        // Crear la vista Root
         
         let navigationController = UINavigationController()
         
