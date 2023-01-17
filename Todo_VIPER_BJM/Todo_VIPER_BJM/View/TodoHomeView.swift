@@ -11,5 +11,5 @@ protocol TodoHomeView: NSObject {
     
     // Delegates (consumers)
     
-    func todo(todoSelected index: Int)
+    func todo(todoSelected todo: TodoEntity)
 }

@@ -16,7 +16,7 @@ class TodoInteractor {
         
         let service = TodoService()
        
-        service.loadTodosState()
+        service.loadTodos()
         
         return service
     }()
@@ -35,8 +35,8 @@ class TodoInteractor {
     
     // Propagamos operaciones del servicio
     
-    func selectTodo(index: Int) {
+    func selectTodo(todo: TodoEntity) {
         
-        self.service.selectTodo(index: index)
+        self.service.selectTodo(todo: todo)
     }
 }

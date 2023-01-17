@@ -27,7 +27,7 @@ class TodoService {
     
     // Loaders
     
-    func loadTodosState() {
+    func loadTodos() {
         
         if let todos = self.todoCoreDataService?.loadTodosCoreData() {
             
@@ -71,10 +71,8 @@ class TodoService {
     
     // Transacciones
     
-    func selectTodo(index: Int) {
+    func selectTodo(todo: TodoEntity) {
         
-        guard index >= 0 && index < self.todos.count else { return }
-        
-        self.todoSeleccionado = self.todos[index]
+        self.todoSeleccionado = todo
     }
 }

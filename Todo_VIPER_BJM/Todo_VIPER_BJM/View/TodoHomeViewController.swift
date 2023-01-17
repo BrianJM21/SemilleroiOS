@@ -19,7 +19,7 @@ class TodoHomeViewController: UIViewController {
 
 extension TodoHomeViewController: TodoHomeView {
     
-    func todo(todoSelected index: Int) {
+    func todo(todoSelected todo: TodoEntity) {
         
         
     }
