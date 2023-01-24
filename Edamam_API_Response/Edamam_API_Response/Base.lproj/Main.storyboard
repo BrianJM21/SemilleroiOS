@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Edamam_API_Response" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehA-us-Ljl">
+                                <rect key="frame" x="116.66666666666669" y="109" width="160" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="API Food Request"/>
+                                <connections>
+                                    <action selector="apiFoodRequestAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XoP-Yw-dyi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXR-nY-cxv">
+                                <rect key="frame" x="110" y="177" width="173" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="API Recipe Request"/>
+                                <connections>
+                                    <action selector="apiRecipeRequestAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2N0-LS-iCi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="API RESPONSE" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9T-D9-nmP">
+                                <rect key="frame" x="40" y="258" width="313" height="500"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="gAd-LA-Pgk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ehA-us-Ljl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="0kb-Qw-FHG"/>
+                            <constraint firstItem="ehA-us-Ljl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DY1-Tt-Vc0"/>
+                            <constraint firstItem="i9T-D9-nmP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Ne8-kc-0ao"/>
+                            <constraint firstItem="hXR-nY-cxv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W3R-N3-nGJ"/>
+                            <constraint firstItem="i9T-D9-nmP" firstAttribute="top" secondItem="hXR-nY-cxv" secondAttribute="bottom" constant="46" id="mQs-wK-RYR"/>
+                            <constraint firstItem="hXR-nY-cxv" firstAttribute="top" secondItem="ehA-us-Ljl" secondAttribute="bottom" constant="33" id="ojQ-vl-wXh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="i9T-D9-nmP" secondAttribute="trailing" constant="40" id="yBK-Jy-oe2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="apiResponseLabel" destination="i9T-D9-nmP" id="XJq-kS-3TN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48" y="-28"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
