@@ -62,8 +62,6 @@ class ViewController: UIViewController {
                           
                           // el que nos interesa
                       case AuthErrorCode.emailAlreadyInUse.rawValue: print("email is alreay in use")
-                          
-                      case AuthErrorCode.
                       default: print("unknown error: \(err.localizedDescription)")
                       }
                       //return
@@ -90,7 +88,43 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func signInMethodsButtonAction(_ sender: Any) {
+        
+        print("llama funcion signInMethods")
+        
+        Auth.auth().fetchSignInMethods(forEmail: self.emailTextField.text!) {
+            
+            methods, error in
+            
+            if let e = error {
+                
+                print(e)
+            } else {
+                
+                if let m = methods {
+                    
+                    print(m)
+                } else {
+                    
+                    print("El correo no se encontró en la base de datos")
+                }
+            }
+        }
+    }
     
-
+    func fetchSignInMethods(forEmail email: String, completion: @escaping (Result<[String], Error>) -> Void) {
+        
+        Auth.auth().fetchSignInMethods(forEmail: email) {
+            
+          if let e = $1 {
+              
+              return completion(.failure(e))
+          } else {
+              
+              let t = $0 == nil ? [] : $0!
+              completion(.success(t))
+          }
+      }
+    }
 }
 

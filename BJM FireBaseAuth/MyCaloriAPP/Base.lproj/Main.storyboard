@@ -62,6 +62,14 @@
                                     <action selector="logOutAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yTD-ey-Q3p"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHC-rr-0hP">
+                                <rect key="frame" x="123.00000000000001" y="739" width="147.33333333333337" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign In Methods"/>
+                                <connections>
+                                    <action selector="signInMethodsButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eOe-CT-PYc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -72,9 +80,11 @@
                             <constraint firstItem="KoY-fR-i3s" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Fce-9v-GIQ"/>
                             <constraint firstItem="RjJ-Sm-l1R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PHE-Gc-yGE"/>
                             <constraint firstItem="x22-m5-AG6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S0M-g1-Fos"/>
+                            <constraint firstItem="yHC-rr-0hP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SZX-ie-ExU"/>
                             <constraint firstItem="GYZ-nM-NCw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="T8H-L7-xhN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KoY-fR-i3s" secondAttribute="trailing" constant="40" id="TsS-ar-nAv"/>
                             <constraint firstItem="KoY-fR-i3s" firstAttribute="top" secondItem="x22-m5-AG6" secondAttribute="bottom" constant="100" id="UYh-bn-5Ib"/>
+                            <constraint firstItem="yHC-rr-0hP" firstAttribute="top" secondItem="RjJ-Sm-l1R" secondAttribute="bottom" constant="31.666666666666629" id="bEn-Gd-d4d"/>
                             <constraint firstItem="vxK-bR-CnA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cKz-pg-gb0"/>
                             <constraint firstItem="GYZ-nM-NCw" firstAttribute="top" secondItem="KoY-fR-i3s" secondAttribute="bottom" constant="50" id="eyT-O5-GTT"/>
                             <constraint firstItem="KoY-fR-i3s" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="z1T-4N-FIY"/>

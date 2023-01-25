@@ -24,3 +24,5 @@ ChangeLog [yy/mm/dd] <dev name> - <change description>
 [23/01/23] <Brian> - <Se defininieron los Entities y los Services del Proyecto>
 [23/01/23] <Brian> - <Se estructuró la arquitectura VIPER en el proyecto>
 [23/01/23] <Brian> - <Se agregó el link al Figma del proyecto>
+[24/01/23] <Eduardo> - <Avance de los Login View>
+[24/01/23] <Brian> - <Avance de los User y Diet Services>

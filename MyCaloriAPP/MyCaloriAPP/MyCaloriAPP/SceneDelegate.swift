@@ -6,8 +6,28 @@
 //
 
 import UIKit
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    // Se crea el contenedor persistente para cargar la información
+    // almacenada en el CoreData
+    lazy var container: NSPersistentContainer = {
+        
+        let container = NSPersistentContainer(name: "MyCaloriAPP")
+        
+        container.loadPersistentStores {
+            
+            _, error in
+            
+            if let error = error {
+                
+                fatalError("Error: al intentar cargar el contenedor (CoreData): \(error)")
+            }
+        }
+        
+        return container
+    }()
 
     var window: UIWindow?
 
